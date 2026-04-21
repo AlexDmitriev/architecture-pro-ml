@@ -25,7 +25,12 @@ embedder = SentenceTransformer("intfloat/multilingual-e5-large-instruct")
 print("✅ Модель загружена")
 
 # Подключение к Chroma в Docker
-client = chromadb.HttpClient(host=CHROMA_HOST, port=CHROMA_PORT)
+# Отключаем telemetry на клиенте, чтобы убрать лишние ошибки capture().
+client = chromadb.HttpClient(
+    host=CHROMA_HOST,
+    port=CHROMA_PORT,
+    settings=Settings(anonymized_telemetry=False),
+)
 
 # Создаем или получаем коллекцию
 try:

@@ -1,8 +1,6 @@
-version: '3.8'
-
 services:
   chromadb:
-    image: chromadb/chroma:latest
+    image: chromadb/chroma:0.4.22
     volumes:
       - ./chroma_data:/chroma/chroma
     environment:
@@ -11,5 +9,5 @@ services:
       - ANONYMIZED_TELEMETRY=FALSE
     ports:
       - "8000:8000"
-    command: run --host 0.0.0.0 --port 8000 --path /chroma/chroma
+    command: uvicorn chromadb.app:app --host 0.0.0.0 --port 8000 --workers 1
     restart: unless-stopped
