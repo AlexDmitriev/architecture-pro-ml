@@ -69,3 +69,16 @@
 - скрипт:  [replace_terms_in_texts.py](replace_terms_in_texts.py)
 - словарь замен [terms_map.json](terms_map.json)
 - новая база знаний лежит в [knowledge_base](knowledge_base) (44 документа)
+
+
+# Задание 3. Создание векторного индекса базы знаний
+- модель multilingual-e5-large-instruct
+- https://huggingface.co/intfloat/multilingual-e5-large-instruct
+- размер чанка - 500 (350-400 слов), перекрытие 50
+- в индексе 4034 чанка
+- генерация заняла около 2х часов 
+
+
+# Задание 4. Реализация RAG-бота с техниками промптинга
+- консольный бот - [rag_deepseek_bot.py](rag_deepseek_bot.py)
+- примеры ответов - [examples.txt](examples.txt)
