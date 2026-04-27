@@ -129,6 +129,25 @@ def add_to_chroma(chunks: List[Dict[str, Any]], batch_size: int = 100):
     
     print(f"Готово. Все {total} чанков индексированы")
 
+
+def get_indexed_sources() -> set[str]:
+    """Возвращает имена файлов (source), уже находящихся в коллекции."""
+    count = collection.count()
+    if count == 0:
+        return set()
+
+    # В некоторых версиях Chroma при include=[] metadatas может быть None.
+    existing = collection.get(include=["metadatas"])
+    sources: set[str] = set()
+    metadatas = existing.get("metadatas") or []
+    for meta in metadatas:
+        if not meta:
+            continue
+        source = meta.get("source")
+        if source:
+            sources.add(source)
+    return sources
+
 def main():
     data_dir = Path("./knowledge_base")
     
@@ -145,9 +164,25 @@ def main():
     print(f"Найдено {len(txt_files)} файлов:")
     for f in txt_files:
         print(f"   - {f.name}")
-    
+
+    indexed_sources = get_indexed_sources()
+    if indexed_sources:
+        print(f"\nВ коллекции уже есть файлов: {len(indexed_sources)}")
+    else:
+        print("\nКоллекция пока пустая, будет выполнена полная индексация.")
+
+    files_to_index = [f for f in txt_files if f.name not in indexed_sources]
+    skipped_count = len(txt_files) - len(files_to_index)
+    if skipped_count:
+        print(f"Пропущено уже загруженных файлов: {skipped_count}")
+    if not files_to_index:
+        print("Новых файлов для индексации нет.")
+        return
+
+    print(f"Новых файлов для индексации: {len(files_to_index)}")
+
     all_chunks = []
-    for file_path in txt_files:
+    for file_path in files_to_index:
         print(f"\nОбработка {file_path.name}...")
         chunks = process_file(file_path)
         print(f"   → {len(chunks)} чанков (размер: {CHUNK_SIZE}, перекрытие: {CHUNK_OVERLAP})")
