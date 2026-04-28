@@ -1,0 +1,44 @@
+{
+    "questions": [
+        {
+            "question": "Опиши вселенную warhammer 40k",
+            "status": "successful"
+        },
+        {
+            "question": "Какие империи ты знаешь?",
+            "status": "unsuccessful"
+        },        
+        {
+            "question": "Что такое стазисное поле?",
+            "status": "unsuccessful"
+        },
+        {
+            "question": "Является ли Мастер Йода джедаем?",
+            "status": "incorrect"
+        },
+        {
+            "question": "Деус Механикус, кто или что это?",
+            "status": "successful"
+        },
+        {
+            "question": "Темпус Дискордия, что это?",
+            "status": "incorrect"
+        },
+        {
+            "question": "Кто такой Люк Скайуокер?",
+            "status": "successful"
+        },
+        {
+            "question": "Кто такие джедаи?",
+            "status": "incorrect"
+        },
+        {
+            "question": "Кто такие марксисты?",
+            "status": "incorrect"
+        },
+        {
+            "question": "Что такое Сила?",
+            "status": "unsuccessful"
+        }
+    ]
+}

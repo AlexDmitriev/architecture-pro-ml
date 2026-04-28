@@ -149,7 +149,7 @@ def get_indexed_sources() -> set[str]:
     return sources
 
 def main():
-    data_dir = Path("./knowledge_base")
+    data_dir = Path("./knowlage_base")
     
     if not data_dir.exists():
         print(f"Папка {data_dir} не существует. Создайте её и положите туда .txt файлы")

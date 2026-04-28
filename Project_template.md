@@ -68,7 +68,7 @@
 
 - скрипт:  [replace_terms_in_texts.py](replace_terms_in_texts.py)
 - словарь замен [terms_map.json](terms_map.json)
-- новая база знаний лежит в [knowledge_base](knowledge_base) (44 документа)
+- новая база знаний лежит в [knowlage_base](knowlage_base) (44 документа)
 
 
 # Задание 3. Создание векторного индекса базы знаний
@@ -80,7 +80,7 @@
 
 
 # Задание 4. Реализация RAG-бота с техниками промптинга
-- консольный бот - [rag_deepseek_bot.py](rag_deepseek_bot.py)
+- консольный бот - [rag_bot.py](rag_bot.py)
 - примеры ответов (4 успешных, 2 неуспешных]) - [examples.txt](examples.txt)
 
 
@@ -105,7 +105,15 @@
 
 
   # Задание 6. Запуск и демонстрация работы бота
-  - Скрипт обновления индекса - [update_index.py](update_index.py)
+  - Скрипт обновления индекса - [update_index.py](update_index.py), пояснение работы - [UPDATE_README.txt](UPDATE_README.txt)
   - Файл CRON - [crontab](crontab)
   - Диаграмма, которая будет объяснять архитектуру и поток данных - [update_flow.png](update_flow.png)
   - пример лога - [log.txt](log.txt)
+
+  
+  Задание 7. Аналитика покрытия и качества базы знаний
+
+  - Файл с логами - [logs.jsonl](logs.jsonl)
+  - Файл с ожидаемыми ответами - [golden_questions.json](golden_questions.json)
+  - Скрипт автоматического тестирования - [evaluate.py](evaluate.py)
+  - Диаграмма на PlantUML - [evaluate_flow.png](evaluate_flow.png)

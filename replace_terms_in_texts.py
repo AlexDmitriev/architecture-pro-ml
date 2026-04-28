@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create transformed txt files in knowledge_base using terms_map.json."""
+"""Create transformed txt files in knowlage_base using terms_map.json."""
 
 from __future__ import annotations
 
@@ -65,7 +65,7 @@ def rename_stem(stem: str, mapping_dict: dict[str, str]) -> str:
 def main() -> int:
     project_root = Path(__file__).resolve().parent
     parser = argparse.ArgumentParser(
-        description="Replace terms in txt files and save results to knowledge_base."
+        description="Replace terms in txt files and save results to knowlage_base."
     )
     parser.add_argument(
         "--mapping-file",
@@ -82,8 +82,8 @@ def main() -> int:
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=project_root / "knowledge_base",
-        help="Каталог для новых txt файлов (default: ./knowledge_base).",
+        default=project_root / "knowlage_base",
+        help="Каталог для новых txt файлов (default: ./knowlage_base).",
     )
     args = parser.parse_args()
 
