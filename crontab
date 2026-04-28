@@ -1,0 +1,1 @@
+0 0 * * * cd /home/alex/projects/study/architecture-pro-ml && ./.venv/bin/python update_index.py

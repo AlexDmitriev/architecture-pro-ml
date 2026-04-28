@@ -1,0 +1,40 @@
+@startuml
+title Обновление индекса
+
+rectangle "Источник данных" as source {
+  folder "knowlage_base_update" as data_dir
+}
+
+rectangle "Планировщик" as scheduler {
+  file "crontab" as cron
+  component "00:00 ежедневно" as daily
+  component ".venv/bin/python update_index.py" as cmd
+}
+
+rectangle "Скрипт" as script {
+  component "update_index.py" as updater
+}
+
+rectangle "Пайплайн индексации" as pipeline {
+  component "Чтение файлов" as read_files
+  component "Разбиение на чанки" as chunks
+  component "SentenceTransformer\nmultilingual-e5-large-instruct" as embeddings
+  database "Chroma index\ncollection=document_chunks" as chroma
+}
+
+rectangle "Логи" as logs {
+  file "log.txt" as log_file
+}
+
+data_dir --> updater : новые/измененные файлы
+cron --> daily
+daily --> cmd
+cmd --> updater : запуск по расписанию
+updater --> read_files
+read_files --> chunks
+chunks --> embeddings
+embeddings --> chroma : embeddings + metadata(content_hash)
+updater --> chroma : сравнение content_hash,\nдобавление/переиндексация
+updater --> log_file : start/end, chunks,\nindex size, errors
+
+@enduml
